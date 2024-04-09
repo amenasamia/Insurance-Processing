@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+     <!--Amena Samia; Section 19-->
+     <!--On my honor, I have neither received nor given any unauthorized assistance on this assignment-->
+    <title> Insurance </title>
+    <meta charset="UTF-8">
+    <script>
+        var typeofInsurance;
+        var typeofHome;
+        var insurance;
+        var floodinsurance;
+        var nondeductible;
+        var typeofpayment;
+        var discount=0, priceofOptional=0, finalPrice=0;
+    </script>
+    <style>
+        body {background-color: bisque; color:rgb(117, 5, 5);}
+      </style>
+    </head>
+
+<body>
+    <h1> Insurrance Processing </h1> 
+    <h2> Inputs </h2>
+
+    <p> Insurance Type :
+        Auto <input type="radio" name="insurancetype" id="Auto" onclick="typeofInsurance='A'"> 
+        Home <input type="radio" name="insurancetype" id="Home" onclick="typeofInsurance='H'"> 
+    </p>
+
+    <table>
+        <tr>
+            <th><b>Insurance Data </b> </th>
+            <th> Answer </th>
+        </tr>
+        <tr>
+            <td>Home Ownership: (O)wn/(R)ent</td>
+            <td>  <input type="text" id="homeo" </td>
+        </tr>
+        <tr>
+            <td>Flood Insurance: (Y)es/(N)o</td>
+            <td> <input type="text" id="flood"></td>
+        </tr>
+        <tr>
+            <td>No Deductible: (Y)es/(N)o</td>
+            <td> <input type="text" id="deductible" > </td>
+        </tr>
+        <tr>
+            <td>Payment Type: (S)ingle/(M)onthly</td>
+            <td> <input type="text" id="payment" > </td>
+        </tr>
+    </table>
+
+    <p> 
+        <button onclick ='
+        if (typeofInsurance == "H"){
+            typeofHome = homeo.value;
+            if (typeofHome == "O") {
+                insurance= 2000;
+            }
+            else if (typeofHome=="R") {
+                insurance= 500;
+            }
+
+            floodinsurance= flood.value;
+            if (floodinsurance == "Y"){
+                priceofOptional= 300;
+            } 
+            else if (floodinsurance=="N") {
+                priceofOptional = 0;
+            } 
+        }
+        else if (typeofInsurance == "A") {
+            insurance=1000;
+
+            nondeductible = deductible.value;
+            if (nondeductible=="Y") {
+                priceofOptional=400;
+            } 
+            else if (nondeductible=="N") {
+                priceofOptional=0;
+            }
+        }
+        typeofpayment=payment.value;
+        if (typeofpayment== "S"){
+            discount= (insurance+priceofOptional)*0.03;
+        } else if (typeofpayment=="M"){
+            discount= 0;
+        }
+        var finalPrice = (insurance + priceofOptional)-discount;
+        
+        totalprice.value = insurance;
+        optionalPrice.value = priceofOptional;
+        discountPrice.value = discount;
+        totalamount.value = finalPrice;
+
+
+        '>Process</button>
+
+
+
+        <button onclick="
+            Auto.checked = false;
+            Home.checked = false;
+        
+            totalprice.value = '';
+            optionalPrice.value = '';
+            discountPrice.value = '';
+            totalamount.value = '';
+            homeo.value = '';
+            flood.value = '';
+            deductible.value = '';
+            payment.value = '';
+
+        " >
+        Clear </button>
+    </p>
+
+    <h2>Outputs</h2>
+    <table>
+        <tr>
+            <th> Item </th>
+            <th> Price </th>
+        </tr>
+        <tr>
+            <td>Total Price</td>
+            <td> <input type="text" id="totalprice" > </td>
+        </tr>
+        <tr>
+            <td>Total Optional Items</td>
+            <td> <input type="text" id="optionalPrice" > </td>
+        </tr>
+        <tr>
+            <td>Total Discount</td>
+            <td> <input type="text" id="discountPrice" > </td>
+        </tr>
+        <tr>
+            <td>Total Amount</td>
+            <td> <input type="text" id="totalamount" > </td>
+        </tr>
+    </table>
+</body>
+</html>
